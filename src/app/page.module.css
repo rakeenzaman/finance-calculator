@@ -1,141 +1,135 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+	background: #141414;
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+.card {
+	width: 100%;
+	max-width: 820px;
+	border-radius: 14px;
+	padding: 20px;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.title {
+	width: fit-content;
+  margin: auto;
+	margin-bottom: 10px;
+	font-size: 28px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
+.subtitle {
+  margin: 0 auto 24px;
+  max-width: 780px;
+  text-align: center;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--text-primary);
+  color: #d1d5db;
 }
 
-.ctas {
+.inputsAndChart {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  gap: 30px;
+  align-items: stretch;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+  }
+
+  .inputsGrid {
+    display: grid;
+    gap: 12px;
+    flex: 0 0 auto;
+
+    .inputGroup {
+      display: grid;
+      gap: 6px;
+    }
+  }
+
+  .inputsPanel {
+    flex: 0 0 auto;
+  }
+
+  .sectionTitle {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #d1d5db;
+  }
+
+  .chartCard {
+    margin-top: 16px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    background: rgba(17, 24, 39, 0.4);
+    flex: 1 1 0;
+    min-width: 0;
+
+    .chartTitle {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #d1d5db;
+    }
+
+    .chartArea {
+      position: relative;
+      height: 260px;
+
+      canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+}
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
+.input {
+	padding: 10px;
+	border-radius: 12px;
+	border: 1px solid #d1d5db;
+  font-family: "Google Sans", Arial, Helvetica, sans-serif;
   font-weight: 500;
+  width: 200px;
+
+  @media (max-width: 850px) {
+    width: 100%;
+  }
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+.resultCard {
+	margin-top: 36px;
+	border-radius: 10px;
+	color: #64e183;
+}
+
+
+.resultAndYear {
+  display: flex;
   gap: 8px;
-}
+  align-items: end;
+  width: fit-content;
+  margin: auto;
 
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+  .resultValue {
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 700;
   }
 
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .resultYear {
+    font-size: 20px;
+    margin-bottom: 7px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
-}

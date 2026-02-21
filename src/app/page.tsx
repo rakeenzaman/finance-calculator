@@ -1,66 +1,77 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Finance Calculators",
+  description:
+    "Use free finance calculators for Roth IRA, Traditional IRA, HYSA, 401(k), mortgage, and auto loans.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const calculators = [
+  {
+    href: "/roth-ira-calculator",
+    title: "Roth IRA Calculator",
+    description: "Project long-term Roth IRA growth with yearly contributions and expected returns.",
+  },
+  {
+    href: "/ira-calculator",
+    title: "Traditional IRA Calculator",
+    description: "Estimate pre-tax growth and after-tax value using your expected marginal tax rate.",
+  },
+  {
+    href: "/hysa-calculator",
+    title: "HYSA Calculator",
+    description: "Estimate high-yield savings account growth with APY and recurring monthly deposits.",
+  },
+  {
+    href: "/401k-calculator",
+    title: "401(k) Calculator",
+    description: "Forecast retirement savings using contribution rates, employer match, and salary growth.",
+  },
+  {
+    href: "/mortgage-calculator",
+    title: "Mortgage Calculator",
+    description: "Calculate monthly payment, total interest, and total paid across your mortgage term.",
+  },
+  {
+    href: "/auto-loan-calculator",
+    title: "Auto Loan Calculator",
+    description: "Calculate monthly car payment, total interest, and total amount paid over time.",
+  },
+];
 
 export default function Home() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Finance Calculator Suite",
+    url: siteUrl,
+    description: "Free calculators for retirement, savings, and loan planning.",
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="home-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <section className="home-shell">
+        <h1 className="home-title">Finance Calculator Suite</h1>
+        <h2 className="home-subtitle">
+          Compare savings, retirement, and loan scenarios with free, easy-to-use financial planning calculators.
+        </h2>
+
+        <div className="home-grid">
+          {calculators.map((calculator) => (
+            <Link key={calculator.href} href={calculator.href} className="home-card">
+              <h3 className="home-card-title">{calculator.title}</h3>
+              <p className="home-card-description">{calculator.description}</p>
+              <span className="home-card-cta">Open calculator →</span>
+            </Link>
+          ))}
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

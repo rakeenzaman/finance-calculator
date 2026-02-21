@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://rakeenzaman.github.io/finance-calculator/sitemap.xml

@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,18566,(t,e,i)=>{e.exports=t.r(76562)},16868,t=>{"use strict";var e=t.i(43476),i=t.i(18566);function r({children:t}){let r=(0,i.usePathname)();return(0,e.jsx)("div",{className:"route-transition",children:t},r)}t.s(["default",()=>r])}]);
